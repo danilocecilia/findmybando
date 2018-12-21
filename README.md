@@ -11,7 +11,7 @@
 5. Users will be able to add photos to capture their jurney;
 6. Users will be able to share thier rig info and add information like PID's;
 
-# Technology Used
+### Technology Used
 
 + React Native
 + AWS S3
