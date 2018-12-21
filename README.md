@@ -1,5 +1,5 @@
 Table of Contents
-+ About Find My Bando
++ [About Find My Bando](#findmybando)
 
 # <a name="findmybando"></a>Find my Bando
 
