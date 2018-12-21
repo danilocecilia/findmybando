@@ -4,7 +4,7 @@
 
 ### Possible Functionalities:
 
-1. Single sign on (google/facebook);
+1. Sign in (google/facebook);
 2. An app that searches in real time for other FPV pilote in case they choose to share their location (everyone/friends);
 3. Users will be able to create groups to organize their meetups/events;
 4. Users will be able to add new friends(pilots) and chat with other users;
