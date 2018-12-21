@@ -1,7 +1,7 @@
 Table of Contents
 + [About Find My Bando](#findmybando)
 
-# <a name="findmybando"></a>Find my Bando
+# <a name="dfindmybando"></a>Find my Bando
 
 ## The main concept of this project is to create a mobile app dedicated for those who are into the drone hobby, so they can login on the app(Android/IOS) and organizte meetup/events, chat with their friends, post pictures.
 
@@ -20,3 +20,9 @@ ___
 + React Native
 + AWS S3
 + Apollo - GraphQL
+
+
+
+
+
+# <a name="findmybando"></a>Find my Bando
