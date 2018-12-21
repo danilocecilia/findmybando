@@ -5,7 +5,7 @@
 
 # <a name="findmybando"></a>Find my Bando
 
-## The main concept of this project is to create a mobile app dedicated for those who are into the drone hobby, so they can login on the app(Android/IOS) and organizte meetup/events, chat with their friends, post pictures.
+### The main concept of this project is to create a mobile app dedicated for those who are into the drone hobby, so they can login on the app(Android/IOS) and organizte meetup/events, chat with their friends, post pictures.
 
 ### <a name="possibleFunctionalities">Possible Functionalities:<a/>
 
