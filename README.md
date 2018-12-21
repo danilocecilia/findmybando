@@ -9,4 +9,4 @@
 3. Users will be able to create groups to organize their meetups/events;
 4. Users will be able to add new friends(pilots) and chat with other users;
 5. Users will be able to add photos to capture their jurney;
-6.
+6. Users will be able to share thier rig info and add information like PID's.
