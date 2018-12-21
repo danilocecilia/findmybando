@@ -1,7 +1,11 @@
 # FindMyBando
 
-## The main concept of this project is to create an mobile app dedicated for people who are into the drone hobby, so they can login on the app and organizte meetup/events, chat with their friends, post pictures.
+## The main concept of this project is to create a mobile app dedicated for those who are into the drone hobby, so they can login on the app(Android/IOS) and organizte meetup/events, chat with their friends, post pictures.
 
-1. An app that searches in real time for other fpv pilotes in case they choose to share their location (everyone/friends)
-2. Pilots can organize their meetups/events
-3. Chat functionality so the pilots can talk to each other
+### Possible Functionalities:
+
+1. Single sign on
+2. An app that searches in real time for other FPV pilotes in case they choose to share their location (everyone/friends);
+3. Users will be able to organize their meetups/events;
+4. Users will be able to add new friends(pilots) and chat with other users;
+5.
