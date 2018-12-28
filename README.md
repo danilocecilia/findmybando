@@ -15,8 +15,8 @@
 4. Users will be able to add new friends(pilots) and chat with other users;
 5. Users will be able to add photos to capture their jurney;
 6. Users will be able to share thier rig info and add information like PID's;
-7. Add push notifications
-8. Social Sharing
+7. Add Push notifications
+8. Social Media Sharing
 
 ___
 
