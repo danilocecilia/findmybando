@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
+import ExploreScreen from '../screens/ExploreScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -24,6 +25,25 @@ HomeStack.navigationOptions = {
     />
   ),
 };
+
+const ExploreStack = createStackNavigator({
+  Explore: ExploreScreen
+});
+
+ExploreStack.navigationOptions = {
+  tabBarLabel: 'Explore',
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon 
+    focused={focused}
+    name={
+        Platform.OS === 'ios'
+          ? `ios-search${focused ? '' : '-outline'}`
+          : 'md-search'
+      } 
+      />
+  )
+}
+
 
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
@@ -55,6 +75,7 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
+  ExploreStack,
   LinksStack,
   SettingsStack,
 });
