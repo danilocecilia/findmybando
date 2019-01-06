@@ -6,13 +6,44 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  StyleProp,
   View,
+  ViewStyle,
+  TextStyle,
+  ImageStyle
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+interface OwnProps {
+  textStyle?: StyleProp<ViewStyle>;
+}
+
+interface Style {
+  container: ViewStyle;
+  developmentModeText: TextStyle;
+  contentContainer: ViewStyle;
+  welcomeContainer: ViewStyle;
+  welcomeImage: ImageStyle;
+  getStartedContainer: TextStyle;
+  homeScreenFilename: ViewStyle;
+  codeHighlightText: TextStyle;
+  codeHighlightContainer: ViewStyle;
+  getStartedText: TextStyle;
+  tabBarInfoContainer: ViewStyle;
+  tabBarInfoText: TextStyle;
+  navigationFilename: ViewStyle;
+  helpContainer: ViewStyle;
+  helpLink: ViewStyle;
+  helpLinkText: TextStyle;
+}
+
+export default class HomeScreen extends React.Component<OwnProps> {
+  constructor(props:any) {
+    super(props);
+  }
+
   static navigationOptions = {
     header: null,
   };
@@ -35,7 +66,7 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
+            <Text style={[styles.getStartedText, this.props.textStyle]}>Get started by opening</Text>
 
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
@@ -98,7 +129,7 @@ export default class HomeScreen extends React.Component {
   };
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create<Style>({
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -151,17 +182,17 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: 'black',
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-      },
+     ...Platform.select({
+       ios: {
+         shadowColor: 'black',
+         //shadowOffset: { height: -3 },
+         shadowOpacity: 0.1,
+         shadowRadius: 3,
+       },
       android: {
         elevation: 20,
       },
-    }),
+     }),
     alignItems: 'center',
     backgroundColor: '#fbfbfb',
     paddingVertical: 20,
@@ -184,5 +215,5 @@ const styles = StyleSheet.create({
   helpLinkText: {
     fontSize: 14,
     color: '#2e78b7',
-  },
+  }
 });
