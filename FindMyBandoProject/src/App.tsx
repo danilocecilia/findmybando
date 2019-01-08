@@ -1,5 +1,7 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import ApolloClient  from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
 // @ts-ignore: Unreachable code error
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
@@ -10,6 +12,8 @@ export default class App extends React.Component {
   };
 
   render() {
+    const client = new ApolloClient();
+
     if (!this.state.isLoadingComplete) {
       return (
         <AppLoading
@@ -20,10 +24,12 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
+        <ApolloProvider client={client}>
+          <View style={styles.container}>
+            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            <AppNavigator />
+          </View>
+        </ApolloProvider>
       );
     }
   }
@@ -44,7 +50,7 @@ export default class App extends React.Component {
     ]);
   };
 
-  _handleLoadingError = (error:any) => {
+  _handleLoadingError = (error: any) => {
     // In this case, you might want to report the error to your error
     // reporting service, for example Sentry
     console.warn(error);
