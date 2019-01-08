@@ -1,10 +1,12 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
-import ApolloClient  from 'apollo-client';
+import { ApolloClient }  from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 // @ts-ignore: Unreachable code error
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
 export default class App extends React.Component {
   state = {
@@ -12,7 +14,14 @@ export default class App extends React.Component {
   };
 
   render() {
-    const client = new ApolloClient();
+    const client = new ApolloClient({
+      // By default, this client will send queries to the
+      //  `/graphql` endpoint on the same host
+      // Pass the configuration option { uri: YOUR_GRAPHQL_API_URL } to the `HttpLink` to connect
+      // to a different host
+      link: new HttpLink(),
+      cache: new InMemoryCache()
+    });
 
     if (!this.state.isLoadingComplete) {
       return (
