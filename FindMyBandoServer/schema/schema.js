@@ -2,77 +2,15 @@ const graphql = require("graphql");
 const _ = require("lodash");
 const { GraphQLID, GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLList } = graphql;
 
-//dummy data
-var activities = [
-  {
-    id: "1",
-    userId: "1",
-    description: "Fav Place",
-    creationDate: "01/01/2019" 
-  },
-  {
-    id: "2",
-    userId: "2",
-    description: "Sec Place",
-    creationDate: "02/01/2019"
-  },
-  {
-    id: "3",
-    userId: "3",
-    description: "Third Place",
-    creationDate: "03/01/2019"
-  }
-];
-
-var users = [
-  {
-    id: "1",
-    name: "Danilo Cecilia",
-    pilotName: "Cyber FPV",
-    email: "cyber@gmail.com",
-    picture: "path.png"
-  },
-  {
-    id: "2",
-    name: "Mariana Cecilia",
-    pilotName: "Mari FPV",
-    email: "mari@gmail.com",
-    picture: "path.png"
-  },
-  {
-    id: "3",
-    name: "Nicholas Cecilia",
-    pilotName: "Nick FPV",
-    email: "nick@gmail.com",
-    picture: "path.png"
-  }
-];
-
-var photos = [
-  {
-    id: "1",
-    name: "image01",
-    path: "photo.jpg",
-    activityId: "1"
-  },
-  {
-    id: "2",
-    name: "image02",
-    path: "photo01.jpg",
-    activityId: "1"
-  },
-  {
-    id: "3",
-    name: "image03",
-    path: "photo02.jpg",
-    activityId: "2"
-  }
-]
+const Activity = require('../models/activity');
+const User = require('../models/user');
+const Photo = require('../models/photo');
 
 const ActivitiesType = new GraphQLObjectType({
   name: "Activity",
   fields: () => ({
     id: { type: GraphQLID },
+    userId: { type: GraphQLID },
     description: { type: GraphQLString },
     creationDate: { type: GraphQLString },
     user: {
@@ -118,7 +56,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         //code to get data from db / other source
-        return _.find(activities, { id: args.id });
+        //return _.find(activities, { id: args.id });
       }
     },
     user: {
@@ -126,7 +64,7 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         //code to get data from db / other source
-        return _.find(users, { id: args.id });
+        //return _.find(users, { id: args.id });
       }
     },
     photo: {
@@ -134,12 +72,83 @@ const RootQuery = new GraphQLObjectType({
       args: { id: { type: GraphQLID } },
       resolve(parent, args) {
         //code to get data from db / other source
-        return _.find(photos, { id: args.id });
+        //return _.find(photos, { id: args.id });
+      }
+    },
+    users: {
+      type: GraphQLList(UsersType),
+      resolve(parent, args) {
+        //code to get data from db / other source
+        //return users;
+      }
+    },
+    activities: {
+      type: GraphQLList(ActivitiesType),
+      resolve(parent, args) {
+        //return activities;
       }
     }
   }
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addActivity: {
+      type: ActivitiesType,
+      args: {
+        userId: { type: GraphQLID },
+        description: { type: GraphQLString },
+        creationDate: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        let activity = new Activity({ 
+          userId: args.userId,
+          description: args.description,
+          creationDate: args.creationDate
+        });
+
+        return activity.save();
+      }
+    },
+    addUser: {
+      type: UsersType,
+      args: {
+        name: { type: GraphQLString },
+        pilotName: { type: GraphQLString },
+        email: { type: GraphQLString },
+        picture: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        let user = new User({
+          name: args.name,
+          pilotName: args.pilotName,
+          email: args.email,
+          picture: args.picture
+        });
+
+        return user.save();
+      }
+    },
+    addPhoto: {
+      type: PhotoType,
+      args: {
+        name: { type: GraphQLString },
+        path: { type: GraphQLString }
+      },
+      resolve(parent, args) {
+        let photo = new Photo({
+          name: args.name,
+          path: args.path
+        });
+
+        return photo.save();
+      }
+    }
+  }
+})
+
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: Mutation
 });
