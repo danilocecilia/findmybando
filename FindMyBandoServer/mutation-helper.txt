@@ -1,0 +1,22 @@
+mutation {
+    addUser(name: "Danilo Cecilia", pilotName:"Cyber FPV", email: "cyber@g", picture: "image.png") {
+      name,
+      pilotName,
+      email,
+      picture   
+    }
+  }
+
+  mutation {
+    addActivity(userId: "5c36e6e3589bd114ac0b06df", description: "AUAHUhAUAHuA", creationDate:"03/01/2019") {
+      description,
+      creationDate
+    }
+  }
+
+  mutation {
+    addPhoto(name: "image01", path:"image01.png") {
+      name,
+      path
+    }
+  }
